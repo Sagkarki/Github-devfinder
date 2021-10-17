@@ -1,32 +1,41 @@
+// Styling variables
 const mode = document.getElementById("dark_btn")
 const background = document.body.style
-const content= document.getElementsByClassName('content')[0].style
-//const stats = document.getElementsById("statistics").style
+const content = document.getElementsByClassName("content")[0].style
 const search = document.getElementById("search_container").style
+const stats = document.getElementById("statistics").style
 const modeText = document.getElementById("modeText")
 
-
-let darkMode = true
-mode.addEventListener("click", function(){
-    if (darkMode == true){
-        dark_mode_properties();
+let darkMode = false
+mode.addEventListener("click", function () {
+    if(darkMode == false) {
+        // darkMode Properties
+       darkModeProperties()
     }
-    else{
-        light_mode_properties();
+    else {
+        // lightMode Properties
+        lightModeProperties()
     }
 })
-function dark_mode_properties(){
+
+function darkModeProperties () {
     background.backgroundColor = "rgb(20,29,47)"
-    backgroundColor = "white"
-    content.backgroundColor= "#808080"
- //  stats.backgroundColor = "rgb(20,29,47)"
-    search.backgroundColor="#808080"
+    background.color = "white"
+    search.backgroundColor = "#1E2A47"
+    content.backgroundColor = "#1E2A47"
+    stats.backgroundColor = "rgb(20,29,47)"
+    modeText.innerText = "LIGHT"
+    mode.src = "./assets/icon-sun.svg"
     darkMode = true
-    modeText.innerText= "LIGHT"
-    mode.src = "./assets/icon-sun.svg" 
-
 }
- 
-function light_mode_properties(){
 
+function lightModeProperties () {
+    background.backgroundColor = "#F2F2F2"
+    background.color = "black"
+    search.backgroundColor = "white"
+    content.backgroundColor = "white"
+    stats.backgroundColor = "#F6F8FF"
+    modeText.innerText = "DARK"
+    mode.src = "./assets/icon-moon.svg"
+    darkMode = false
 }
