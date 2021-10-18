@@ -48,8 +48,14 @@ const bio = document.getElementById("bio")
 const repo = document.getElementById("repo")
 const followers = document.getElementById("followers")
 const following = document.getElementById("following")
-const location = document.getElementById("location")
-const bio = document.getElementById("website")
+const date = document.getElementById("date")
+const months = ["January" , "February", "March", "April", "May", "June", "July", "August", "September" + "October" + "Novermber", "December"]
+
+
+
+
+//const location = document.getElementById("location")
+//const bio = document.getElementById("website")
 
 input.addEventListener("keydown", function(e){
     if(e.key== "Enter") {
@@ -83,6 +89,8 @@ function updateProfile(data){
     repo.innerText= data.public_repos
     followers.innerText = data.followers
     following.innerText = data.following
+    let dateSplit = data.created_at.split("T").shift().split("-")
+    date.innerText = "Joined"+ " "+ dateSplit[2] + " " + months[dateSplit[1]-1] + " " + dateSplit[0]
     //location.innerText = data.location
    // bio.innerText = data.blog
 
