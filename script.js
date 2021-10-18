@@ -40,12 +40,36 @@ function lightModeProperties () {
     darkMode = false
 }
 
-const url = "https://api.github.com/users/";
+const url = 'https://api.github.com/users/';
+const input = document.getElementById("input")
+const userName = document.getElementById("name")
 
-fetch("https://api.github.com/users/sagkarki")
+
+input.addEventListener("keydown", function(e){
+    if(e.key== "Enter") {
+        if (input.value !==""){
+            getUserData(url+input.value)
+        }
+    }
+})
+
+
+
+function getUserData(gitUrl){
+fetch(gitUrl)
 .then(response => response.json())
 .then(data => {
+    console.log(data.name)
+    updateProfile(data)
     console.log(data)
 }).catch(error => {
     throw error;
 })
+}
+
+
+function updateProfile(data){
+    //change html with userdata
+}
+
+getUserData(url + "octocat")
