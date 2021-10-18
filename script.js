@@ -41,9 +41,15 @@ function lightModeProperties () {
 }
 
 const url = 'https://api.github.com/users/';
-const input = document.getElementById("input")
 const userName = document.getElementById("name")
-
+const avatar = document.getElementById("avatar")
+const login = document.getElementById("login")
+const bio = document.getElementById("bio")
+const repo = document.getElementById("repo")
+const followers = document.getElementById("followers")
+const following = document.getElementById("following")
+const location = document.getElementById("location")
+const bio = document.getElementById("website")
 
 input.addEventListener("keydown", function(e){
     if(e.key== "Enter") {
@@ -70,6 +76,16 @@ fetch(gitUrl)
 
 function updateProfile(data){
     //change html with userdata
+    avatar.src = data.avatar_url
+    userName.innerText = data.name
+    login.innerText ="@" + data.login
+    bio.innerText = (data.bio ==null ? "The profile has no bio" : data.bio)
+    repo.innerText= data.public_repos
+    followers.innerText = data.followers
+    following.innerText = data.following
+    //location.innerText = data.location
+   // bio.innerText = data.blog
+
 }
 
 getUserData(url + "octocat")
