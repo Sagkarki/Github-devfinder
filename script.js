@@ -1,4 +1,5 @@
 // Styling variables
+
 const mode = document.getElementById("dark_btn")
 const background = document.body.style
 const content = document.getElementsByClassName("content")[0].style
@@ -49,13 +50,11 @@ const repo = document.getElementById("repo")
 const followers = document.getElementById("followers")
 const following = document.getElementById("following")
 const date = document.getElementById("date")
-const months = ["January" , "February", "March", "April", "May", "June", "July", "August", "September" + "October" + "Novermber", "December"]
-
-
-
-
-//const location = document.getElementById("location")
-//const bio = document.getElementById("website")
+const months = ["Jan" , "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept" + "Oct" + "Nov", "Dec"]
+const userLocation = document.getElementById("userLocation")
+const blog = document.getElementById("blog")
+const twitter = document.getElementById("twitter")
+const company = document.getElementById("company")
 
 input.addEventListener("keydown", function(e){
     if(e.key== "Enter") {
@@ -79,6 +78,14 @@ fetch(gitUrl)
 })
 }
 
+function checkAvailable(parameter){
+    if (parameter=== "" || parameter === null){
+        return "Not available"
+    } 
+    else{
+        return parameter
+    }
+}
 
 function updateProfile(data){
     //change html with userdata
@@ -91,8 +98,12 @@ function updateProfile(data){
     following.innerText = data.following
     let dateSplit = data.created_at.split("T").shift().split("-")
     date.innerText = "Joined"+ " "+ dateSplit[2] + " " + months[dateSplit[1]-1] + " " + dateSplit[0]
-    //location.innerText = data.location
-   // bio.innerText = data.blog
+    userLocation.innerText = data.location
+    blog.innerText = checkAvailable(data.blog)
+    blog.href = data.blog
+    twitter.innerText = checkAvailable(data.twitter_username)
+    company.innerText = checkAvailable(data.company)
+
 
 }
 
