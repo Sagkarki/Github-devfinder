@@ -39,3 +39,13 @@ function lightModeProperties () {
     mode.src = "./assets/icon-moon.svg"
     darkMode = false
 }
+
+const url = "https://api.github.com/users/";
+
+fetch("https://api.github.com/users/sagkarki")
+.then(response => response.json())
+.then(data => {
+    console.log(data)
+}).catch(error => {
+    throw error;
+})
